@@ -1,5 +1,6 @@
         class Solution {
 public:
+// ist question 
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> mp;
 
