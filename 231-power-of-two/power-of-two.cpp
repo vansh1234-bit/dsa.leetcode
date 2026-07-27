@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool isPowerOfTwo(int n ) {
+        // thinkh about odd and even 
         if(n == 1 ){
             return true ;
         }
