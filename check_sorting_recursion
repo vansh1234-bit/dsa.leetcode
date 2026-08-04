@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool check_sorted(vector<int> &arr , int index  ){
+
+    if (index == arr.size() - 1)
+        return true;
+
+    // Current pair is not sorted
+    if (arr[index] > arr[index + 1])
+        return false;
+
+    // Check remaining array
+    return check_sorted(arr, index + 1);
+}
+
+
+int main() {
+  vector<int> nums = {1,2,3,4, 10,5,6} ;
+  int i = 1 ;
+	cout<<check_sorted(nums , i ) ;
+
+}
