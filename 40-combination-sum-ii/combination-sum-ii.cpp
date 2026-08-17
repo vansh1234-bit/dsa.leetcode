@@ -1,7 +1,6 @@
 class Solution {
 public:
 void  comb(vector<int>& arr , int target , vector<int> &ds , int idx  , vector<vector<int>> &ans ){
-    // vector<vector<int>> ans ;
     if(target == 0 ){
        ans.push_back(ds) ;
        return ;
@@ -14,7 +13,7 @@ void  comb(vector<int>& arr , int target , vector<int> &ds , int idx  , vector<v
             break ;
         }
         ds.push_back(arr[i]) ;
-        comb(arr , target - arr[i] , ds ,i + 1  , ans  ) ;
+        comb(arr , target - arr[i] , ds , i + 1  , ans  ) ;
         ds.pop_back() ;
     }
 }
