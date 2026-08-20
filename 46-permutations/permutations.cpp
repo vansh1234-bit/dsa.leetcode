@@ -1,25 +1,26 @@
 class Solution {
 public:
-void perm(vector<int> nums , vector<int> &ds , vector<vector<int>> &ans , vector<int> &hash ){
-    if(ds.size() == nums.size()){
-        ans.push_back(ds) ;
-        return ;
-    }
-    for(int i = 0 ; i < nums.size() ; i++){
-        if(!hash[i]){
-            ds.push_back(nums[i]) ;
-            hash[i] = 1 ;
-            perm(nums , ds, ans , hash ) ;
-            hash[i] = 0 ;
-            ds.pop_back() ;
+void  print(vector<int>& nums , int idx , vector<int> &ds , vector<vector<int>> &ans ) {
+        if(idx == nums.size()){
+            ans.push_back(nums) ;
+            return ;
         }
+        for(int i = idx ;i < nums.size() ; i++ ){
+            swap(nums[i] ,nums[idx]) ;
+            print(nums , idx + 1 , ds , ans ) ;
+            swap(nums[i] , nums[idx]) ;
+        }
+// return ans ;
     }
-}
     vector<vector<int>> permute(vector<int>& nums) {
+         int idx = 0 ;
         vector<int> ds ;
         vector<vector<int>> ans ;
-        vector<int> hash(nums.size() , 0 ) ;
-        perm(nums , ds , ans , hash ) ;
+        print(nums , idx , ds , ans ) ;
         return ans ;
     }
+    
 };
+
+
+
