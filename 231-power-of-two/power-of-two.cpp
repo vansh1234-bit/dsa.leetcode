@@ -1,13 +1,22 @@
 class Solution {
 public:
-    bool isPowerOfTwo(int n ) {
-        // thinkh about odd and even 
-        if(n == 1 ){
+    bool isPowerOfTwo(int n) {
+        if(n == 1){
             return true ;
         }
-        if(n <= 0 || n % 2 != 0 ){
+        if(n <= 0 || n % 2 != 0) {
             return false ;
         }
-    return isPowerOfTwo(n / 2 ) ;
+        else if(n == 2){
+            return true ;
+        }
+        else {
+            int m = n / 2 ;
+            if(m == 1 ){
+                return false ;
+            }
+             return isPowerOfTwo(m) ;
+        }
+return true ;
     }
 };
