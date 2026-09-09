@@ -18,6 +18,7 @@ public:
          slow = slow->next ;
         }
         if(fast->next == NULL){
+            // delete fast ;
             return slow ;
         }
         else {
