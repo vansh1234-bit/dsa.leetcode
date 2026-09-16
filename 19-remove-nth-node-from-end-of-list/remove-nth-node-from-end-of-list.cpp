@@ -26,8 +26,7 @@ public:
             fast = fast->next ;
             slow =slow->next ;
         }
-        ListNode * temp = slow->next->next ;
-        slow->next = temp ;
+        slow->next = slow->next->next ;
         return dummy->next  ; 
     }
 };
