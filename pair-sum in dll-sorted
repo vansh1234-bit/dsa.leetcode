@@ -1,0 +1,30 @@
+class Solution {
+  public:
+    vector<vector<int>> givenSumPairs(Node* head, int target) {
+     Node * slow = head ;
+     Node * fast = head ;
+     vector<vector<int>> ans ;
+     while(fast->next != NULL && fast->next->next != NULL){
+         fast = fast->next->next ;
+     }
+     if(fast->next!= NULL){
+         fast = fast->next ;
+     }
+     
+     while(slow->data < fast->data){
+         int sum = slow->data + fast->data ;
+         if(sum  == target ){
+             ans.push_back({slow->data , fast->data }) ; 
+             slow = slow->next ;
+             fast = fast->prev ; 
+         }
+         else if(sum > target ){
+             fast = fast->prev ;
+         }
+         else {
+             slow = slow->next ;
+         }
+     }
+     return ans ; 
+    }
+};
