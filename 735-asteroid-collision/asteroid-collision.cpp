@@ -1,58 +1,41 @@
 class Solution {
 public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
-    vector<int> ans;
-    stack<int> st;
-
-    for(int i = 0; i < asteroids.size(); i++) {
-
-        int curr = asteroids[i];
-
-        if(st.empty()) {
-            st.push(curr);
-        }
-
-        else {
-
-            while(!st.empty()) {
-
-                if(st.top() * curr >= 0 || st.top() < 0) {
-                    st.push(curr);
-                    break;
-                }
-
-                else {
-
-                    if(st.top() < abs(curr)) {
-                        st.pop();
-                    }
-
-                    else if(st.top() == abs(curr)) {
-                        st.pop();
-                        curr = 0;
-                        break;
-                    }
-
-                    else {
-                        curr = 0;
-                        break;
-                    }
-                }
-            }
-
-            if(st.empty() && curr != 0) {
-                st.push(curr);
-            }
-        }
+        stack<int> st ;
+         
+        for(int i = 0 ; i < asteroids.size() ; i++){
+            bool isalive = true ;
+      if(!st.empty() && ((st.top() * asteroids[i]) > 0 || st.top() < 0 && asteroids[i] > 0 )){
+                 st.push(asteroids[i]) ;
+                 continue ; 
+      }
+while(!st.empty() && (st.top() > 0 && asteroids[i] < 0) ){
+    if(-asteroids[i]  > st.top() ){
+        st.pop() ;
     }
-
-    while(!st.empty()) {
-        ans.push_back(st.top());
-        st.pop();
+    else if(-asteroids[i]  == st.top() ){
+        st.pop() ;
+        isalive = false ;
+        break ; 
     }
-
-    reverse(ans.begin(), ans.end());
-
-    return ans;
+    else {
+         isalive = false ;
+        break ;  
+    }
 }
-    };
+if(isalive){
+    st.push(asteroids[i]) ;
+}
+        }
+vector<int> ans ;
+int j = 0 ;
+while(!st.empty()){
+ans.push_back(st.top()) ;
+j ++ ;
+st.pop() ;
+}
+reverse(ans.begin() , ans.end()) ;
+return ans ; 
+
+    }
+};
